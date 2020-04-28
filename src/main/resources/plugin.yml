@@ -1,0 +1,8 @@
+name: SweetieLib
+main: org.sweetiebelle.lib.SweetieLib
+version: $version
+api-version: 1.15
+authors: [SweetieBelle]
+depend: [LuckPerms]
+description: >
+             A library plugin for some of my other plugins
