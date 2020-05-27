@@ -55,7 +55,7 @@ public class SweetieLib extends JavaPlugin {
     private ConnectionSQL connectionManager;
     private NoPermissionException luckException;
     private PermissionManager permissionManager;
-    private Settings s;
+    private Settings settings;
     /**
      * The delay in ticks when our {@link KeepAliveTask#run()} task should call its run method
      * <p>
@@ -115,9 +115,9 @@ public class SweetieLib extends JavaPlugin {
     @SuppressWarnings("deprecation")
     @Override
     public void onEnable() {
-        s = new Settings(this);
+        settings = new Settings(this);
         try {
-            connectionManager = new ConnectionSQL(this, s);
+            connectionManager = new ConnectionSQL(this, settings);
         } catch (Exception e) {
             connectionException = new NoConnectionException(e);
             connectionManager = null;
