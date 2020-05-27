@@ -2,18 +2,18 @@ package org.sweetiebelle.lib;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-class Settings {
+public class Settings {
 
-    String dbDatabase;
-    String dbHost;
-    String dbPass;
-    String dbPort;
-    String dbPrefix;
-    String dbUser;
-    boolean recOnJoin;
-    boolean showQuery;
-    boolean stackTraces;
-    boolean useDebug;
+    private String dbDatabase;
+    private String dbHost;
+    private String dbPass;
+    private String dbPort;
+    private String dbPrefix;
+    private String dbUser;
+    private boolean recOnJoin;
+    private boolean showQuery;
+    private boolean stackTraces;
+    private boolean useDebug;
     private FileConfiguration config;
     private final SweetieLib plugin;
 
@@ -48,5 +48,72 @@ class Settings {
         plugin.reloadConfig();
         config = plugin.getConfig();
         readSettings();
+    }
+
+    public boolean isShowQuery() {
+        return showQuery;
+    }
+
+    /**
+     * @return the dbDatabase
+     */
+    public String getDbDatabase() {
+        return dbDatabase;
+    }
+
+    /**
+     * @return the dbHost
+     */
+    public String getDbHost() {
+        return dbHost;
+    }
+
+    /**
+     * @return the dbPass
+     */
+    public String getDbPass() {
+        return dbPass;
+    }
+
+    /**
+     * @return the dbPort
+     */
+    public String getDbPort() {
+        return dbPort;
+    }
+
+    /**
+     * @return the dbPrefix
+     */
+    public String getDbPrefix() {
+        return dbPrefix;
+    }
+
+    /**
+     * @return the dbUser
+     */
+    public String getDbUser() {
+        return dbUser;
+    }
+
+    /**
+     * @return the recOnJoin
+     */
+    public boolean isRecOnJoin() {
+        return recOnJoin;
+    }
+
+    /**
+     * @return the stackTraces
+     */
+    public boolean isStackTraces() {
+        return stackTraces;
+    }
+
+    /**
+     * @return the useDebug
+     */
+    public boolean isUseDebug() {
+        return useDebug;
     }
 }

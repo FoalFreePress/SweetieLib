@@ -6,38 +6,30 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.sweetiebelle.lib.connection.ConnectionManager;
+import org.sweetiebelle.lib.connection.ConnectionSQL;
 import org.sweetiebelle.lib.exceptions.NoConnectionException;
-import org.sweetiebelle.lib.exceptions.NoLuckPermsException;
+import org.sweetiebelle.lib.exceptions.NoPermissionException;
 import org.sweetiebelle.lib.exceptions.SweetieLibNotLoadedException;
+import org.sweetiebelle.lib.permission.PermissionLuckPerms;
+import org.sweetiebelle.lib.permission.PermissionManager;
 
 public class SweetieLib extends JavaPlugin {
 
     public final static UUID CONSOLE_UUID = UUID.fromString("3c879ef9-95c2-44d1-98f9-2824610477c8");
     public final static String NO_PERMISSION = ChatColor.RED + "You do not have permission to use this command.";
-    private static NoConnectionException connectionException;
-    private static ConnectionManager connectionManager;
-    private static NoLuckPermsException luckException;
-    private static LuckPermsManager luckManager;
-
-    public static ConnectionManager getConnection() throws NoConnectionException, SweetieLibNotLoadedException {
-        if (connectionManager == null) {
-            if (connectionException == null)
-                throw new SweetieLibNotLoadedException();
-            throw connectionException;
-        }
-        return connectionManager;
-    }
-
-    public static LuckPermsManager getLuckPerms() throws NoLuckPermsException, SweetieLibNotLoadedException {
-        if (luckManager == null) {
-            if (luckException == null)
-                throw new SweetieLibNotLoadedException();
-            throw luckException;
-        }
-        return luckManager;
-    }
-
+    private static SweetieLib plugin;
+    private NoConnectionException connectionException;
+    private ConnectionSQL connectionManager;
+    private NoPermissionException luckException;
+    private PermissionManager permissionManager;
     private Settings s;
+    
+    public static SweetieLib getPlugin() throws SweetieLibNotLoadedException {
+        if(plugin == null)
+            throw new SweetieLibNotLoadedException();
+        return plugin;
+    }
     /**
      * 20 ticks in a second, 60 seconds in a minute, 60 minutes per hour. So every hour
      */
@@ -57,20 +49,35 @@ public class SweetieLib extends JavaPlugin {
     public void onEnable() {
         s = new Settings(this);
         try {
-            connectionManager = new ConnectionManager(this, s);
+            connectionManager = new ConnectionSQL(this, s);
         } catch (Exception e) {
             connectionException = new NoConnectionException(e);
             connectionManager = null;
-            e.printStackTrace();
         }
         try {
-            luckManager = new LuckPermsManager();
+            permissionManager = new PermissionLuckPerms();
         } catch (Exception e) {
-            luckException = new NoLuckPermsException(e);
-            luckManager = null;
-            e.printStackTrace();
+            luckException = new NoPermissionException(e);
+            permissionManager = null;
         }
         if (connectionManager != null)
             Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new KeepAliveTask(connectionManager), 0, tickDelay);
+        plugin = this;
+    }
+
+    public PermissionManager getPermission() throws NoPermissionException {
+        if (permissionManager == null) {
+            throw luckException;
+        }
+        return permissionManager;
+    }
+
+    public ConnectionManager getConnection() throws NoConnectionException {
+        if (connectionManager == null) {
+            if (connectionException == null)
+                throw new SweetieLibNotLoadedException();
+            throw connectionException;
+        }
+        return connectionManager;
     }
 }

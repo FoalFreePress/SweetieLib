@@ -1,6 +1,6 @@
 package org.sweetiebelle.lib.exceptions;
 
-public class SweetieLibNotLoadedException extends Exception {
+public class SweetieLibNotLoadedException extends RuntimeException {
 
     /**
      *

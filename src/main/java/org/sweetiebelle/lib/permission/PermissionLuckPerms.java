@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib;
+package org.sweetiebelle.lib.permission;
 
 import java.util.UUID;
 
@@ -12,22 +12,25 @@ import net.luckperms.api.model.user.User;
 import net.luckperms.api.model.user.UserManager;
 import net.luckperms.api.query.QueryOptions;
 
-public class LuckPermsManager {
+public class PermissionLuckPerms implements PermissionManager {
 
     private LuckPerms provider;
 
-    LuckPermsManager() throws ClassNotFoundException {
+    public PermissionLuckPerms() throws ClassNotFoundException {
         provider = (LuckPerms) Bukkit.getServicesManager().getRegistration(Class.forName("net.luckperms.api.LuckPerms")).getProvider();
     }
 
+    @Override
     public String getCompletePlayerPrefix(UUID player) {
         return getPlayerPrefix(player) + getGroupPrefix(player);
     }
 
+    @Override
     public String getCompletePlayerSuffix(UUID player) {
         return getPlayerSuffix(player) + getGroupSuffix(player);
     }
 
+    @Override
     public String getGroupPrefix(UUID player) {
         String prefix = "";
         for (int i = 5; i > 0; i--) {
@@ -38,6 +41,7 @@ public class LuckPermsManager {
         return ChatColor.translateAlternateColorCodes('&', prefix);
     }
 
+    @Override
     public String getGroupSuffix(UUID player) {
         String suffix = "";
         for (int i = 5; i > 0; i--) {
@@ -48,14 +52,17 @@ public class LuckPermsManager {
         return ChatColor.translateAlternateColorCodes('&', suffix);
     }
 
+    @Override
     public String getPlayerPrefix(UUID player) {
         return this.getPlayerPrefix(getMetaData(player), 6);
     }
 
+    @Override
     public String getPlayerSuffix(UUID player) {
         return this.getPlayerSuffix(getMetaData(player), 6);
     }
 
+    @Override
     public String getPrimaryGroup(UUID player) {
         User user = provider.getUserManager().getUser(player);
         if (user == null)

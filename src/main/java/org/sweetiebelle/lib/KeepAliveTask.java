@@ -2,6 +2,8 @@ package org.sweetiebelle.lib;
 
 import java.sql.SQLException;
 
+import org.sweetiebelle.lib.connection.ConnectionManager;
+
 class KeepAliveTask implements Runnable {
 
     private ConnectionManager connection;

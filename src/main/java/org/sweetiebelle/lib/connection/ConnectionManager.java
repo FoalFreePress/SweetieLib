@@ -1,26 +1,11 @@
-package org.sweetiebelle.lib;
+package org.sweetiebelle.lib.connection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
-import java.util.logging.Logger;
 
-public class ConnectionManager {
-
-    private Connection connection;
-    private String connectString;
-    private Logger logger;
-    private Settings settings;
-
-    ConnectionManager(SweetieLib plugin, Settings s) throws SQLException {
-        logger = plugin.getLogger();
-        settings = s;
-        connectString = new String("jdbc:mysql://" + settings.dbHost + ":" + settings.dbPort + "/" + settings.dbDatabase + "?autoReconnect=true&useSSL=false");
-        getConnection();
-    }
+public interface ConnectionManager {
 
     /**
      * Executes the given SQL statement, which returns a single <code>ResultSet</code> object.
@@ -35,12 +20,7 @@ public class ConnectionManager {
      * @throws SQLTimeoutException
      *             when the driver has determined that the timeout value that was specified by the {@code setQueryTimeout} method has been exceeded and has at least attempted to cancel the currently running {@code Statement}
      */
-    public ResultSet executeQuery(String query) throws SQLException {
-        if (settings.showQuery)
-            logger.info(query);
-        getConnection();
-        return connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(query);
-    }
+    public ResultSet executeQuery(String query) throws SQLException;
 
     /**
      * Executes the given SQL statement, which may be an <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code> statement or an SQL statement that returns nothing, such as an SQL DDL statement.
@@ -57,12 +37,7 @@ public class ConnectionManager {
      * @throws SQLTimeoutException
      *             when the driver has determined that the timeout value that was specified by the {@code setQueryTimeout} method has been exceeded and has at least attempted to cancel the currently running {@code Statement}
      */
-    public int executeUpdate(String update) throws SQLException {
-        if (settings.showQuery)
-            logger.info(update);
-        getConnection();
-        return connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(update);
-    }
+    public int executeUpdate(String update) throws SQLException;
 
     /**
      * Creates a <code>PreparedStatement</code> object for sending parameterized SQL statements to the database.
@@ -80,20 +55,5 @@ public class ConnectionManager {
      * @exception SQLException
      *                if a database access error occurs or this method is called on a closed connection
      */
-    public PreparedStatement getStatement(String statement) throws SQLException {
-        if (settings.showQuery)
-            getConnection();
-        return connection.prepareStatement(statement);
-    }
-
-    void closeConnection() throws SQLException {
-        connection.close();
-    }
-
-    private void getConnection() throws SQLException {
-        if (connection == null || connection.isClosed() || !connection.isValid(0)) {
-            logger.info("Connecting to " + settings.dbUser + "@" + connectString + "...");
-            connection = DriverManager.getConnection(connectString, settings.dbUser, settings.dbPass);
-        }
-    }
+    public PreparedStatement getStatement(String statement) throws SQLException;
 }
