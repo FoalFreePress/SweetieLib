@@ -5,6 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 
+/**
+ * Provides different methods for executing SQL queries. The same Connection is always used internally, so there is only one active connection to the database at any given time.
+ * 
+ * @author sweetie
+ *
+ */
 public interface ConnectionManager {
 
     /**

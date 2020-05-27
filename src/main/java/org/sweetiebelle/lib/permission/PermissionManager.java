@@ -3,7 +3,7 @@ package org.sweetiebelle.lib.permission;
 import java.util.UUID;
 
 /**
- * Interface for all of the LuckPerms integrations. If LuckPerms is not loaded, then a default implementation will be provided.
+ * Interface for all of the Permissions-Chat integrations.
  * 
  * @author sweetie
  *

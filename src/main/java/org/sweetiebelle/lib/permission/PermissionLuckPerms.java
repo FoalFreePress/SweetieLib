@@ -20,16 +20,25 @@ public class PermissionLuckPerms implements PermissionManager {
         provider = (LuckPerms) Bukkit.getServicesManager().getRegistration(Class.forName("net.luckperms.api.LuckPerms")).getProvider();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCompletePlayerPrefix(UUID player) {
         return getPlayerPrefix(player) + getGroupPrefix(player);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCompletePlayerSuffix(UUID player) {
         return getPlayerSuffix(player) + getGroupSuffix(player);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getGroupPrefix(UUID player) {
         String prefix = "";
@@ -41,6 +50,9 @@ public class PermissionLuckPerms implements PermissionManager {
         return ChatColor.translateAlternateColorCodes('&', prefix);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getGroupSuffix(UUID player) {
         String suffix = "";
@@ -52,16 +64,25 @@ public class PermissionLuckPerms implements PermissionManager {
         return ChatColor.translateAlternateColorCodes('&', suffix);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPlayerPrefix(UUID player) {
         return this.getPlayerPrefix(getMetaData(player), 6);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPlayerSuffix(UUID player) {
         return this.getPlayerSuffix(getMetaData(player), 6);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPrimaryGroup(UUID player) {
         User user = provider.getUserManager().getUser(player);
@@ -74,6 +95,14 @@ public class PermissionLuckPerms implements PermissionManager {
         return user.getPrimaryGroup();
     }
 
+    /**
+     * private method to translate a UUID to CachedMetaData
+     * 
+     * @param playerUUID
+     *            the player UUID
+     * @return the MetaData
+     * @see net.luckperms.api.cacheddata.CachedMetaData
+     */
     private CachedMetaData getMetaData(UUID playerUUID) {
         UserManager userManager = provider.getUserManager();
         User user = userManager.getUser(playerUUID);
@@ -87,11 +116,31 @@ public class PermissionLuckPerms implements PermissionManager {
         return user.getCachedData().getMetaData(QueryOptions.contextual(contextManager.getContext(user).orElseGet(contextManager::getStaticContext)));
     }
 
+    /**
+     * Private method to return a player prefix from the metadata
+     * 
+     * @param data
+     *            the meta data
+     * @param priority
+     *            the requested priority
+     * @return the prefix
+     * 
+     */
     private String getPlayerPrefix(CachedMetaData data, int priority) {
         String prefix = data.getPrefixes().get(priority);
         return prefix != null ? prefix : "";
     }
 
+    /**
+     * Private method to return a player suffix from the metadata
+     * 
+     * @param data
+     *            the meta data
+     * @param priority
+     *            the requested priority
+     * @return the suffix
+     * 
+     */
     private String getPlayerSuffix(CachedMetaData data, int priority) {
         String suffix = data.getSuffixes().get(priority);
         return suffix != null ? suffix : "";
