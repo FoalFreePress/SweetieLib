@@ -10,6 +10,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Settings {
 
     /**
+     * Our private config file.
+     */
+    private FileConfiguration config;
+    /**
      * The database name.
      * <p>
      * Also known as the schema name.
@@ -35,17 +39,13 @@ public class Settings {
      */
     private String dbUser;
     /**
-     * Should all queries be saved?
-     */
-    private boolean showQuery;
-    /**
-     * Our private config file.
-     */
-    private FileConfiguration config;
-    /**
      * The plugin instance.
      */
     private final SweetieLib plugin;
+    /**
+     * Should all queries be saved?
+     */
+    private boolean showQuery;
 
     /**
      * Default constructor to initialize our class.
@@ -61,37 +61,6 @@ public class Settings {
         plugin.saveDefaultConfig();
         config = plugin.getConfig();
         readSettings();
-    }
-
-    /**
-     * Reads settings
-     *
-     */
-    void readSettings() {
-        showQuery = config.getBoolean("general.showquery");
-        dbHost = config.getString("database.host");
-        dbPort = config.getString("database.port");
-        dbUser = config.getString("database.username");
-        dbPass = config.getString("database.password");
-        dbDatabase = config.getString("database.database");
-    }
-
-    /**
-     * Reloads settings
-     */
-    void reloadSettings() {
-        plugin.reloadConfig();
-        config = plugin.getConfig();
-        readSettings();
-    }
-
-    /**
-     * Should all queries be showed?
-     *
-     * @return should the queries be showed
-     */
-    public boolean isShowQuery() {
-        return showQuery;
     }
 
     /**
@@ -141,5 +110,36 @@ public class Settings {
      */
     public String getDbUser() {
         return dbUser;
+    }
+
+    /**
+     * Should all queries be showed?
+     *
+     * @return should the queries be showed
+     */
+    public boolean isShowQuery() {
+        return showQuery;
+    }
+
+    /**
+     * Reads settings
+     *
+     */
+    void readSettings() {
+        showQuery = config.getBoolean("general.showquery");
+        dbHost = config.getString("database.host");
+        dbPort = config.getString("database.port");
+        dbUser = config.getString("database.username");
+        dbPass = config.getString("database.password");
+        dbDatabase = config.getString("database.database");
+    }
+
+    /**
+     * Reloads settings
+     */
+    void reloadSettings() {
+        plugin.reloadConfig();
+        config = plugin.getConfig();
+        readSettings();
     }
 }

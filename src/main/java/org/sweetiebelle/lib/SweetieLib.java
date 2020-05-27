@@ -37,11 +37,6 @@ public class SweetieLib extends JavaPlugin {
      */
     public final static String NO_PERMISSION = ChatColor.RED + "You do not have permission to use this command.";
     private static SweetieLib plugin;
-    private NoConnectionException connectionException;
-    private ConnectionSQL connectionManager;
-    private NoPermissionException luckException;
-    private PermissionManager permissionManager;
-    private Settings s;
 
     /**
      * Gets a copy of our plugin.
@@ -56,6 +51,11 @@ public class SweetieLib extends JavaPlugin {
         return plugin;
     }
 
+    private NoConnectionException connectionException;
+    private ConnectionSQL connectionManager;
+    private NoPermissionException luckException;
+    private PermissionManager permissionManager;
+    private Settings s;
     /**
      * The delay in ticks when our {@link KeepAliveTask#run()} task should call its run method
      * <p>
@@ -65,6 +65,37 @@ public class SweetieLib extends JavaPlugin {
      * @see KeepAliveTask#run()
      */
     private final long tickDelay = 72000;
+
+    /**
+     * Gets a copy of our {@link ConnectionManager}
+     *
+     * @return the current connection manager
+     * @throws NoConnectionException
+     *             if no connection manager is currently loaded
+     * @see ConnectionManager
+     */
+    public ConnectionManager getConnection() throws NoConnectionException {
+        if (connectionManager == null) {
+            if (connectionException == null)
+                throw new SweetieLibNotLoadedException();
+            throw connectionException;
+        }
+        return connectionManager;
+    }
+
+    /**
+     * Gets a copy of our {@link PermissionManager}
+     *
+     * @return the current permission manager
+     * @throws NoPermissionException
+     *             if no Permission Manager is currently loaded.
+     * @see PermissionManager
+     */
+    public PermissionManager getPermission() throws NoPermissionException {
+        if (permissionManager == null)
+            throw luckException;
+        return permissionManager;
+    }
 
     /**
      * {@inheritDoc}
@@ -100,36 +131,5 @@ public class SweetieLib extends JavaPlugin {
         if (connectionManager != null)
             Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new KeepAliveTask(connectionManager), 0, tickDelay);
         plugin = this;
-    }
-
-    /**
-     * Gets a copy of our {@link PermissionManager}
-     *
-     * @return the current permission manager
-     * @throws NoPermissionException
-     *             if no Permission Manager is currently loaded.
-     * @see PermissionManager
-     */
-    public PermissionManager getPermission() throws NoPermissionException {
-        if (permissionManager == null)
-            throw luckException;
-        return permissionManager;
-    }
-
-    /**
-     * Gets a copy of our {@link ConnectionManager}
-     *
-     * @return the current connection manager
-     * @throws NoConnectionException
-     *             if no connection manager is currently loaded
-     * @see ConnectionManager
-     */
-    public ConnectionManager getConnection() throws NoConnectionException {
-        if (connectionManager == null) {
-            if (connectionException == null)
-                throw new SweetieLibNotLoadedException();
-            throw connectionException;
-        }
-        return connectionManager;
     }
 }

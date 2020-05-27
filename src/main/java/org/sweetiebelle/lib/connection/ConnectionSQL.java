@@ -43,6 +43,16 @@ public class ConnectionSQL implements ConnectionManager {
     }
 
     /**
+     * Closes this connection
+     *
+     * @throws SQLException
+     *             if a database access error occurs
+     */
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -72,16 +82,6 @@ public class ConnectionSQL implements ConnectionManager {
         if (settings.isShowQuery())
             getConnection();
         return connection.prepareStatement(statement);
-    }
-
-    /**
-     * Closes this connection
-     *
-     * @throws SQLException
-     *             if a database access error occurs
-     */
-    public void closeConnection() throws SQLException {
-        connection.close();
     }
 
     /**
