@@ -6,12 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
+
 import org.sweetiebelle.lib.Settings;
 import org.sweetiebelle.lib.SweetieLib;
 
 /**
  * Class for SQL connection
- * 
+ *
  * @author sweetie
  *
  */
@@ -75,7 +76,7 @@ public class ConnectionSQL implements ConnectionManager {
 
     /**
      * Closes this connection
-     * 
+     *
      * @throws SQLException
      *             if a database access error occurs
      */
@@ -85,7 +86,7 @@ public class ConnectionSQL implements ConnectionManager {
 
     /**
      * Private method for refreshing our connection if it is necessary.
-     * 
+     *
      * @throws SQLException
      *             if we cannot reconnect to the database for whatever reason.
      */

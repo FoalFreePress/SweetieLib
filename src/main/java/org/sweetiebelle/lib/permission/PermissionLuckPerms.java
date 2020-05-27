@@ -97,7 +97,7 @@ public class PermissionLuckPerms implements PermissionManager {
 
     /**
      * private method to translate a UUID to CachedMetaData
-     * 
+     *
      * @param playerUUID
      *            the player UUID
      * @return the MetaData
@@ -118,13 +118,13 @@ public class PermissionLuckPerms implements PermissionManager {
 
     /**
      * Private method to return a player prefix from the metadata
-     * 
+     *
      * @param data
      *            the meta data
      * @param priority
      *            the requested priority
      * @return the prefix
-     * 
+     *
      */
     private String getPlayerPrefix(CachedMetaData data, int priority) {
         String prefix = data.getPrefixes().get(priority);
@@ -133,13 +133,13 @@ public class PermissionLuckPerms implements PermissionManager {
 
     /**
      * Private method to return a player suffix from the metadata
-     * 
+     *
      * @param data
      *            the meta data
      * @param priority
      *            the requested priority
      * @return the suffix
-     * 
+     *
      */
     private String getPlayerSuffix(CachedMetaData data, int priority) {
         String suffix = data.getSuffixes().get(priority);

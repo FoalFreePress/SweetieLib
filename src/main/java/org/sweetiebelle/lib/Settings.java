@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 /**
  * Our settings. Lots of useful database information is stored here.
- * 
+ *
  * @author sweetie
  */
 public class Settings {
@@ -22,7 +22,7 @@ public class Settings {
     private String dbHost;
     /**
      * The password to connect to the database.
-     * 
+     *
      * @see #dbUser
      */
     private String dbPass;
@@ -52,7 +52,7 @@ public class Settings {
      * <p>
      * Only we should initialize this class
      * </p>
-     * 
+     *
      * @param plugin
      *            our plugin
      */
@@ -87,7 +87,7 @@ public class Settings {
 
     /**
      * Should all queries be showed?
-     * 
+     *
      * @return should the queries be showed
      */
     public boolean isShowQuery() {
@@ -99,7 +99,7 @@ public class Settings {
      * <p>
      * Also known as the schema name.
      * </p>
-     * 
+     *
      * @return the database name
      */
     public String getDbDatabase() {
@@ -108,7 +108,7 @@ public class Settings {
 
     /**
      * Gets the database hostname
-     * 
+     *
      * @return the database hostname
      */
     public String getDbHost() {
@@ -117,7 +117,7 @@ public class Settings {
 
     /**
      * Gets the database password for our username
-     * 
+     *
      * @return the database password
      * @see #getDbUser()
      */
@@ -127,7 +127,7 @@ public class Settings {
 
     /**
      * Gets the database port.
-     * 
+     *
      * @return the database port
      */
     public String getDbPort() {
@@ -136,7 +136,7 @@ public class Settings {
 
     /**
      * Gets the username to connect to the database.
-     * 
+     *
      * @return the username to connect to the database
      */
     public String getDbUser() {

@@ -2,7 +2,7 @@ package org.sweetiebelle.lib.exceptions;
 
 /**
  * Thrown when SweetieLib isn't loaded. This class extends RuntimeException, since programmers who call <code>SweetieLib#getPlugin()</code> early get this exception.
- * 
+ *
  * @author sweetie
  * @see org.sweetiebelle.lib.SweetieLib#getPlugin()
  */

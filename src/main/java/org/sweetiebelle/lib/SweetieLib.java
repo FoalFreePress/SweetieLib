@@ -16,7 +16,7 @@ import org.sweetiebelle.lib.permission.PermissionManager;
 
 /**
  * SweetieLib provides common code and fields for all of my other plugins.
- * 
+ *
  * @author sweetie
  *
  */
@@ -45,13 +45,13 @@ public class SweetieLib extends JavaPlugin {
 
     /**
      * Gets a copy of our plugin.
-     * 
+     *
      * @return the SweetieLib instance.
      * @throws SweetieLibNotLoadedException
      *             if SweetieLib isn't actually loaded.
      */
     public static SweetieLib getPlugin() throws SweetieLibNotLoadedException {
-        if(plugin == null)
+        if (plugin == null)
             throw new SweetieLibNotLoadedException();
         return plugin;
     }
@@ -61,7 +61,7 @@ public class SweetieLib extends JavaPlugin {
      * <p>
      * Current value is every hour in ticks.
      * </p>
-     * 
+     *
      * @see KeepAliveTask#run()
      */
     private final long tickDelay = 72000;
@@ -104,22 +104,21 @@ public class SweetieLib extends JavaPlugin {
 
     /**
      * Gets a copy of our {@link PermissionManager}
-     * 
+     *
      * @return the current permission manager
      * @throws NoPermissionException
      *             if no Permission Manager is currently loaded.
      * @see PermissionManager
      */
     public PermissionManager getPermission() throws NoPermissionException {
-        if (permissionManager == null) {
+        if (permissionManager == null)
             throw luckException;
-        }
         return permissionManager;
     }
 
     /**
      * Gets a copy of our {@link ConnectionManager}
-     * 
+     *
      * @return the current connection manager
      * @throws NoConnectionException
      *             if no connection manager is currently loaded

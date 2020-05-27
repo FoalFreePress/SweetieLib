@@ -2,7 +2,7 @@ package org.sweetiebelle.lib.exceptions;
 
 /**
  * This Exception is thrown when there is no <code>ConnectionManager</code> present.
- * 
+ *
  * @author sweetie
  * @see org.sweetiebelle.lib.connection.ConnectionManager
  */

@@ -6,7 +6,7 @@ import org.sweetiebelle.lib.connection.ConnectionManager;
 
 /**
  * Default class in order to keep our connection alive.
- * 
+ *
  * @author sweetie
  *
  */
@@ -19,7 +19,7 @@ class KeepAliveTask implements Runnable {
 
     /**
      * Default constructor so only we can initialize this class.
-     * 
+     *
      * @param connection
      *            the connection
      */

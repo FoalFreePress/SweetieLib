@@ -1,7 +1,8 @@
 package org.sweetiebelle.lib.exceptions;
+
 /**
  * This Exception is thrown when there is no <code>PermissionManager</code> present.
- * 
+ *
  * @author sweetie
  * @see org.sweetiebelle.lib.permission.PermissionManager
  */

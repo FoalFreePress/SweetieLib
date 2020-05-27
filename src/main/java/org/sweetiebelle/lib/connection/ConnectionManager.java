@@ -7,7 +7,7 @@ import java.sql.SQLTimeoutException;
 
 /**
  * Provides different methods for executing SQL queries. The same Connection is always used internally, so there is only one active connection to the database at any given time.
- * 
+ *
  * @author sweetie
  *
  */
@@ -26,7 +26,7 @@ public interface ConnectionManager {
      * @throws SQLTimeoutException
      *             when the driver has determined that the timeout value that was specified by the {@code setQueryTimeout} method has been exceeded and has at least attempted to cancel the currently running {@code Statement}
      */
-    public ResultSet executeQuery(String query) throws SQLException;
+    ResultSet executeQuery(String query) throws SQLException;
 
     /**
      * Executes the given SQL statement, which may be an <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code> statement or an SQL statement that returns nothing, such as an SQL DDL statement.
@@ -43,7 +43,7 @@ public interface ConnectionManager {
      * @throws SQLTimeoutException
      *             when the driver has determined that the timeout value that was specified by the {@code setQueryTimeout} method has been exceeded and has at least attempted to cancel the currently running {@code Statement}
      */
-    public int executeUpdate(String update) throws SQLException;
+    int executeUpdate(String update) throws SQLException;
 
     /**
      * Creates a <code>PreparedStatement</code> object for sending parameterized SQL statements to the database.
@@ -61,5 +61,5 @@ public interface ConnectionManager {
      * @exception SQLException
      *                if a database access error occurs or this method is called on a closed connection
      */
-    public PreparedStatement getStatement(String statement) throws SQLException;
+    PreparedStatement getStatement(String statement) throws SQLException;
 }
