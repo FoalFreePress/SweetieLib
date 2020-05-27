@@ -16,7 +16,7 @@ import org.sweetiebelle.lib.permission.PermissionManager;
 
 public class SweetieLib extends JavaPlugin {
 
-    public final static UUID CONSOLE_UUID = UUID.fromString("3c879ef9-95c2-44d1-98f9-2824610477c8");
+    public final static UUID CONSOLE_UUID = new UUID(0, 0);
     public final static String NO_PERMISSION = ChatColor.RED + "You do not have permission to use this command.";
     private static SweetieLib plugin;
     private NoConnectionException connectionException;

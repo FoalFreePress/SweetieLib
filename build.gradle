@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.sweetiebelle'
-version = '2'
+version = '3'
 
 repositories {
 	jcenter()
@@ -18,6 +18,10 @@ dependencies {
 	implementation 'net.luckperms:api:5.0'
 	implementation fileTree(dir: 'libs', include: '*.jar')
 
+}
+
+java {
+	withSourcesJar()
 }
 
 processResources {
