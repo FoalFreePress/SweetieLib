@@ -33,6 +33,13 @@ public class SweetieLib extends JavaPlugin {
      */
     public final static UUID CONSOLE_UUID = new UUID(0, 0);
     /**
+     * Static String to represent the server Console's Name.
+     * <p>
+     * This String will NEVER be a player's name, since it contains a <code>~</code>
+     * </p>
+     */
+    public final static String CONSOLE_NAME = "~CONSOLE";
+    /**
      * Default message to provide to a player that they do not have permission to execute a command.
      */
     public final static String NO_PERMISSION = ChatColor.RED + "You do not have permission to use this command.";
