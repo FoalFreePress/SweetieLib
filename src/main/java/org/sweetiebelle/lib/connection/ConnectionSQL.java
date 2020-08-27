@@ -1,5 +1,7 @@
 package org.sweetiebelle.lib.connection;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +18,7 @@ import org.sweetiebelle.lib.SweetieLib;
  * @author sweetie
  *
  */
-public class ConnectionSQL implements ConnectionManager {
+public class ConnectionSQL implements ConnectionManager, Closeable {
 
     /**
      * The single connection that everyone uses.
@@ -38,18 +40,23 @@ public class ConnectionSQL implements ConnectionManager {
     public ConnectionSQL(SweetieLib plugin, Settings s) throws SQLException {
         logger = plugin.getLogger();
         settings = s;
-        connectString = new String("jdbc:mysql://" + settings.getDbHost() + ":" + settings.getDbPort() + "/" + settings.getDbDatabase() + "?autoReconnect=true&useSSL=false");
+        connectString = new String("jdbc:mysql://" + settings.getDbHost() + ":" + settings.getDbPort() + "/" + settings.getDbDatabase() + "?" + settings.getdbExtraSettings());
         getConnection();
     }
 
     /**
      * Closes this connection
      *
-     * @throws SQLException
+     * @throws IOException
      *             if a database access error occurs
      */
-    public void closeConnection() throws SQLException {
+    @Override
+    public void close() throws IOException {
+    	try {
         connection.close();
+    	} catch (SQLException e) {
+    		throw new IOException(e);
+    	}
     }
 
     /**

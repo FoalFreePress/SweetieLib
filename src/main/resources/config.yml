@@ -7,3 +7,4 @@ database:
   host: localhost
   port: 3306
   database: schema
+  extrasettings: autoReconnect=true&useSSL=false
