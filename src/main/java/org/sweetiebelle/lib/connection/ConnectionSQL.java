@@ -47,16 +47,15 @@ public class ConnectionSQL implements ConnectionManager, Closeable {
     /**
      * Closes this connection
      *
-     * @throws IOException
-     *             if a database access error occurs
+     * @throws IOException if a database access error occurs
      */
     @Override
     public void close() throws IOException {
-    	try {
-        connection.close();
-    	} catch (SQLException e) {
-    		throw new IOException(e);
-    	}
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new IOException(e);
+        }
     }
 
     /**
@@ -82,6 +81,19 @@ public class ConnectionSQL implements ConnectionManager, Closeable {
     }
 
     /**
+     * Private method for refreshing our connection if it is necessary.
+     *
+     * @throws SQLException if we cannot reconnect to the database for whatever
+     *                      reason.
+     */
+    private void getConnection() throws SQLException {
+        if (connection == null || connection.isClosed() || !connection.isValid(0)) {
+            logger.info("Connecting to " + settings.getDbUser() + "@" + connectString + "...");
+            connection = DriverManager.getConnection(connectString, settings.getDbUser(), settings.getDbPass());
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -89,18 +101,5 @@ public class ConnectionSQL implements ConnectionManager, Closeable {
         if (settings.isShowQuery())
             getConnection();
         return connection.prepareStatement(statement);
-    }
-
-    /**
-     * Private method for refreshing our connection if it is necessary.
-     *
-     * @throws SQLException
-     *             if we cannot reconnect to the database for whatever reason.
-     */
-    private void getConnection() throws SQLException {
-        if (connection == null || connection.isClosed() || !connection.isValid(0)) {
-            logger.info("Connecting to " + settings.getDbUser() + "@" + connectString + "...");
-            connection = DriverManager.getConnection(connectString, settings.getDbUser(), settings.getDbPass());
-        }
     }
 }

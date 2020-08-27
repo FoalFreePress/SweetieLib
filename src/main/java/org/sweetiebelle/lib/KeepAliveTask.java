@@ -20,8 +20,7 @@ class KeepAliveTask implements Runnable {
     /**
      * Default constructor so only we can initialize this class.
      *
-     * @param connection
-     *            the connection
+     * @param connection the connection
      */
     KeepAliveTask(ConnectionManager connection) {
         this.connection = connection;
