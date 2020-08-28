@@ -1,6 +1,5 @@
 package org.sweetiebelle.lib.connection;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +17,7 @@ import org.sweetiebelle.lib.SweetieLib;
  * @author sweetie
  *
  */
-public class ConnectionSQL implements ConnectionManager, Closeable {
+public class ConnectionSQL implements ConnectionManager {
 
     /**
      * The single connection that everyone uses.

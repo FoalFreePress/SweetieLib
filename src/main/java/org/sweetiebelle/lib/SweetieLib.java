@@ -1,6 +1,7 @@
 package org.sweetiebelle.lib;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -58,7 +59,8 @@ public class SweetieLib extends JavaPlugin {
             throw new SweetieLibNotLoadedException();
         return plugin;
     }
-
+    
+    private ArrayList<ConnectionManager> connectionManagers;
     private NoConnectionException connectionException;
     private ConnectionSQL connectionManager;
     private NoPermissionException luckException;
@@ -77,7 +79,8 @@ public class SweetieLib extends JavaPlugin {
 
     /**
      * Gets a copy of our {@link ConnectionManager}
-     *
+     * 
+     * 
      * @return the current connection manager
      * @throws NoConnectionException if no connection manager is currently loaded
      * @see ConnectionManager
@@ -90,6 +93,7 @@ public class SweetieLib extends JavaPlugin {
         }
         return connectionManager;
     }
+    
 
     /**
      * Gets a copy of our {@link PermissionManager}

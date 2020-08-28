@@ -1,5 +1,6 @@
 package org.sweetiebelle.lib.connection;
 
+import java.io.Closeable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import java.sql.SQLTimeoutException;
  * @author sweetie
  *
  */
-public interface ConnectionManager {
+public interface ConnectionManager extends Closeable {
 
     /**
      * Executes the given SQL statement, which returns a single

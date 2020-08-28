@@ -1,7 +1,7 @@
 name: SweetieLib
 main: org.sweetiebelle.lib.SweetieLib
 version: $version
-api-version: 1.15
+api-version: 1.16
 authors: [SweetieBelle]
 depend: [LuckPerms]
 description: >

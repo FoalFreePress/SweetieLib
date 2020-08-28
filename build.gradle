@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.sweetiebelle'
-version = '4'
+version = '5'
 
 repositories {
 	jcenter()
@@ -14,10 +14,9 @@ repositories {
 	}
 }
 dependencies {
-	implementation 'org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT'
+	implementation 'org.spigotmc:spigot-api:1.16.2-R0.1-SNAPSHOT'
 	implementation 'net.luckperms:api:5.0'
 	implementation fileTree(dir: 'libs', include: '*.jar')
-
 }
 
 java {
