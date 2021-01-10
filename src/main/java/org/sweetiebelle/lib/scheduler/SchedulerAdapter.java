@@ -25,7 +25,6 @@
 package org.sweetiebelle.lib.scheduler;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ScheduledFuture;
@@ -47,9 +46,9 @@ public class SchedulerAdapter {
 
     public SchedulerAdapter(final Plugin bootstrap) {
         this.sync = r -> bootstrap.getServer().getScheduler().scheduleSyncDelayedTask(bootstrap, r);
-        this.scheduler = new ScheduledThreadPoolExecutor(1, new ThreadFactoryBuilder().setDaemon(true).setNameFormat("mcprofiler-scheduler").build());
+        this.scheduler = new ScheduledThreadPoolExecutor(1, new ThreadFactoryBuilder().setDaemon(true).setNameFormat(bootstrap.getName().toLowerCase() + "-scheduler").build());
         this.scheduler.setRemoveOnCancelPolicy(true);
-        this.schedulerWorkerPool = new ErrorReportingExecutor(Executors.newCachedThreadPool(new ThreadFactoryBuilder().setDaemon(true).setNameFormat("mcprofiler-scheduler-worker-%d").build()));
+        this.schedulerWorkerPool = new ErrorReportingExecutor(Executors.newCachedThreadPool(new ThreadFactoryBuilder().setDaemon(true).setNameFormat(bootstrap.getName().toLowerCase() + "-scheduler-worker-%d").build()));
         this.worker = new ForkJoinPool(Runtime.getRuntime().availableProcessors(), ForkJoinPool.defaultForkJoinWorkerThreadFactory, (t, e) -> {
             bootstrap.getLogger().severe("Uncaught Exception in Thread " + t.getName());
             e.printStackTrace();
@@ -89,38 +88,6 @@ public class SchedulerAdapter {
             this.schedulerWorkerPool.delegate.awaitTermination(1, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private static final class ErrorReportingExecutor implements Executor {
-
-        private final ExecutorService delegate;
-
-        private ErrorReportingExecutor(ExecutorService delegate) {
-            this.delegate = delegate;
-        }
-
-        @Override
-        public void execute(Runnable command) {
-            this.delegate.execute(new ErrorReportingRunnable(command));
-        }
-    }
-
-    private static final class ErrorReportingRunnable implements Runnable {
-
-        private final Runnable delegate;
-
-        private ErrorReportingRunnable(Runnable delegate) {
-            this.delegate = delegate;
-        }
-
-        @Override
-        public void run() {
-            try {
-                this.delegate.run();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }

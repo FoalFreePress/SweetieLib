@@ -1,7 +1,6 @@
 package org.sweetiebelle.lib;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -60,7 +59,6 @@ public class SweetieLib extends JavaPlugin {
         return plugin;
     }
     
-    private ArrayList<ConnectionManager> connectionManagers;
     private NoConnectionException connectionException;
     private ConnectionSQL connectionManager;
     private NoPermissionException luckException;
