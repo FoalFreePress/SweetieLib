@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib.exceptions;
+package net.shonx.lib.exceptions;
 
 /**
  * Thrown when SweetieLib isn't loaded. This class extends RuntimeException,
@@ -6,7 +6,7 @@ package org.sweetiebelle.lib.exceptions;
  * exception.
  *
  * @author sweetie
- * @see org.sweetiebelle.lib.SweetieLib#getPlugin()
+ * @see net.shonx.lib.SweetieLib#getPlugin()
  */
 public class SweetieLibNotLoadedException extends RuntimeException {
 

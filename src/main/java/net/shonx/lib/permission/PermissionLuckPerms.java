@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib.permission;
+package net.shonx.lib.permission;
 
 import java.util.UUID;
 

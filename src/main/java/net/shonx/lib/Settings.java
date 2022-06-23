@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib;
+package net.shonx.lib;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

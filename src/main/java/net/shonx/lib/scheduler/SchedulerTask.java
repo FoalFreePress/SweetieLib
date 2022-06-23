@@ -26,21 +26,16 @@
 // * https://github.com/lucko/LuckPerms/blob/505c073c8e9b9a841e7267b34f3e42a84d0469d3/bukkit/src/main/java/me/lucko/luckperms/bukkit/BukkitSchedulerAdapter.java
 // * https://github.com/lucko/LuckPerms/blob/505c073c8e9b9a841e7267b34f3e42a84d0469d3/common/src/main/java/me/lucko/luckperms/common/plugin/scheduler/AbstractJavaScheduler.java
 
-package org.sweetiebelle.lib.scheduler;
+package net.shonx.lib.scheduler;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
+/**
+ * Represents a scheduled task
+ */
+public interface SchedulerTask {
 
-final class ErrorReportingExecutor implements Executor {
+    /**
+     * Cancels the task.
+     */
+    void cancel();
 
-    final ExecutorService delegate;
-
-    ErrorReportingExecutor(ExecutorService delegate) {
-        this.delegate = delegate;
-    }
-
-    @Override
-    public void execute(Runnable command) {
-        this.delegate.execute(new ErrorReportingRunnable(command));
-    }
 }

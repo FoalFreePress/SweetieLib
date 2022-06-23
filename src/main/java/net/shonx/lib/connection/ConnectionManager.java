@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib.connection;
+package net.shonx.lib.connection;
 
 import java.io.Closeable;
 import java.sql.PreparedStatement;

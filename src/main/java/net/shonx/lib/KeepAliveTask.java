@@ -1,8 +1,8 @@
-package org.sweetiebelle.lib;
+package net.shonx.lib;
 
 import java.sql.SQLException;
 
-import org.sweetiebelle.lib.connection.ConnectionManager;
+import net.shonx.lib.connection.ConnectionManager;
 
 /**
  * Default class in order to keep our connection alive.

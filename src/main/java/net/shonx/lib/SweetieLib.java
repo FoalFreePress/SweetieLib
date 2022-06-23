@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib;
+package net.shonx.lib;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -6,13 +6,13 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.sweetiebelle.lib.connection.ConnectionManager;
-import org.sweetiebelle.lib.connection.ConnectionSQL;
-import org.sweetiebelle.lib.exceptions.NoConnectionException;
-import org.sweetiebelle.lib.exceptions.NoPermissionException;
-import org.sweetiebelle.lib.exceptions.SweetieLibNotLoadedException;
-import org.sweetiebelle.lib.permission.PermissionLuckPerms;
-import org.sweetiebelle.lib.permission.PermissionManager;
+import net.shonx.lib.connection.ConnectionManager;
+import net.shonx.lib.connection.ConnectionSQL;
+import net.shonx.lib.exceptions.NoConnectionException;
+import net.shonx.lib.exceptions.NoPermissionException;
+import net.shonx.lib.exceptions.SweetieLibNotLoadedException;
+import net.shonx.lib.permission.PermissionLuckPerms;
+import net.shonx.lib.permission.PermissionManager;
 
 /**
  * SweetieLib provides common code and fields for all of my other plugins.

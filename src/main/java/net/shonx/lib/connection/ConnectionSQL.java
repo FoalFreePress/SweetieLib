@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib.connection;
+package net.shonx.lib.connection;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import org.sweetiebelle.lib.Settings;
-import org.sweetiebelle.lib.SweetieLib;
+import net.shonx.lib.Settings;
+import net.shonx.lib.SweetieLib;
 
 /**
  * Class for SQL connection

@@ -1,8 +1,8 @@
 name: SweetieLib
-main: org.sweetiebelle.lib.SweetieLib
-version: $version
-api-version: 1.16
+main: net.shonx.lib.SweetieLib
+version: @VERSION@
+api-version: 1.19
 authors: [SweetieBelle]
-depend: [LuckPerms]
+softdepend: [LuckPerms]
 description: >
              A library plugin for some of my other plugins

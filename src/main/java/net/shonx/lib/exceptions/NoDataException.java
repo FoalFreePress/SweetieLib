@@ -1,4 +1,4 @@
-package org.sweetiebelle.lib.exceptions;
+package net.shonx.lib.exceptions;
 
 /**
  * Throw to indicate data is missing.
